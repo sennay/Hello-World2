@@ -4,7 +4,7 @@
     /* ---------------------------------- Local Variables ---------------------------------- */
     var adapter = new MemoryAdapter();
     adapter.initialize().done(function () {
-        console.log("Data adapter initialized");
+        showAlert("Data adapter initialized");
     });
 
 
@@ -23,6 +23,14 @@
                 $('.employee-list').append('<li><a href="#employees/' + e.id + '">' + e.firstName + ' ' + e.lastName + '</a></li>');
             }
         });
+    }
+
+    function showAlert(message, title) {
+        if (navigator.notification) {
+            navigator.notification.alert(message, null, title, 'OK');
+        } else {
+            alert(title ? (title + ": " + message) : message);
+        }
     }
 
 }());
